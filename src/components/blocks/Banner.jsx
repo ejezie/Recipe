@@ -2,7 +2,7 @@ import React from "react";
 import useDebounce from "hooks/useDebounce";
 import formatIngredient from "utils/formatIgredient";
 import { useSelector, useDispatch } from "react-redux";
-import { getRecipesAction, getRecipeInfoAction } from "redux/slice/recipes.slice";
+import { getRecipesAction, getRecipeInfoAction, getRandomRecipesAction } from "redux/slice/recipes.slice";
 
 const Banner = () => {
   const [inputValue, setInputValue] = React.useState("");
@@ -14,7 +14,11 @@ const Banner = () => {
   const debouncedInputValue = useDebounce(inputValue, 300);
 
   const handleClick = () => {
-    dispatch(getRecipesAction({recipes: formattedValue}));
+    formattedValue && dispatch(getRecipesAction({recipes: formattedValue}));
+  };
+
+  const handleClickRandom = () => {
+    dispatch(getRandomRecipesAction());
   };
 
   React.useEffect(() => {
@@ -45,7 +49,7 @@ const Banner = () => {
             Search
           </button>
         </div>
-        <button className="text-sm text-black bg-primary py-3 px-6 rounded-full text-white poppins ring-red-300 focus:ring-4 transition duration-300 hover:scale-105 transform">
+        <button onClick={handleClickRandom} className="text-sm text-black bg-primary py-3 px-6 rounded-full text-white poppins ring-red-300 focus:ring-4 transition duration-300 hover:scale-105 transform">
           Random Recipe
         </button>
       </div>

@@ -1,17 +1,32 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { getAllRecipes, getRecipesInfo } from "services/recipes.service";
+import { getAllRecipes, getRandomRecipes, getRecipesInfo } from "services/recipes.service";
 import { formatErrorResponse } from "utils/formatErrorResponse";
 
 export const getRecipesAction = createAsyncThunk(
   "recipes/all",
-  async ({recipes, number=10}, thunkAPI) => {
+  async ({recipes, number=9}, thunkAPI) => {
     try {
       const response = await getAllRecipes(recipes, number);
-      console.log(response, "recipes");
       return response.data;
     } catch (error) {
       const errorMessage = formatErrorResponse(error);
+      console.log(error, "recipes");
+      toast.error(errorMessage);
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const getRandomRecipesAction = createAsyncThunk(
+  "recipes/random",
+  async (number=9, thunkAPI) => {
+    try {
+      const response = await getRandomRecipes(number);
+      return response.data.recipes;
+    } catch (error) {
+      const errorMessage = formatErrorResponse(error);
+      console.log(error, "recipes");
       toast.error(errorMessage);
       return thunkAPI.rejectWithValue(errorMessage);
     }
@@ -21,6 +36,7 @@ export const getRecipesAction = createAsyncThunk(
 export const getRecipeInfoAction = createAsyncThunk(
   "recipes/info",
   async (id, thunkAPI) => {
+    console.log(id, "id");
     try {
       const response = await getRecipesInfo(id);
       return response.data;
@@ -64,6 +80,18 @@ const recipeSlice = createSlice({
       state.recipesInfo[action.payload.id] = action.payload;
     });
     builder.addCase(getRecipeInfoAction.rejected, (state) => {
+      state.isLoading = false;
+    });
+
+    // Recipe Random Cases
+    builder.addCase(getRandomRecipesAction.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getRandomRecipesAction.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.recipesAll = action.payload;
+    });
+    builder.addCase(getRandomRecipesAction.rejected, (state) => {
       state.isLoading = false;
     });
   },
