@@ -4,6 +4,7 @@ import formatText from "utils/formatText";
 import { HashLoader } from "react-spinners";
 import { Link, useParams } from "react-router-dom";
 import { FaFacebook, FaTwitter, FaPinterest } from "react-icons/fa";
+import { greybg } from "assets/images";
 
 const RecipeDetails = () => {
   const { id } = useParams();
@@ -88,7 +89,7 @@ const RecipeDetails = () => {
           <div className="overflow-hidden rounded-lg flex flex-grow">
             <img
               className="w-full h-[400px] object-cover transform transition duration-700 hover:scale-125"
-              src={data?.image}
+              src={data?.image || greybg}
               alt={data?.title}
             />
           </div>

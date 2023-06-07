@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import Skeleton from "./Skeleton";
 import formatText from "utils/formatText";
@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { getRecipeInfoAction } from "redux/slice/recipes.slice";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import { greybg } from "assets/images";
 
 const RecipeItem = ({ id, filters }) => {
   const { isLoading, recipesInfo } = useSelector((state) => state.recipes);
@@ -50,7 +51,7 @@ const RecipeItem = ({ id, filters }) => {
               <div className="w-full h-56 overflow-hidden">
                 <img
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                  src={data?.image}
+                  src={data?.image || greybg}
                   alt=""
                 />
               </div>
