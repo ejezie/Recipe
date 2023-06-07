@@ -47,7 +47,7 @@ const Recipes = ({ ingredients }) => {
   }, [dispatch, ingredients, itemNumber]);
 
   return (
-    <section className="my-12 max-w-screen-xl mx-auto px-6 md:px-12 flex items-center justify-center flex-col">
+    <section className="mt-12 pb-24 max-w-screen-xl mx-auto px-6 md:px-12 flex items-center justify-center flex-col">
       <div className="overflow-x-auto max-w-full border-b-2 border-t-2">
         <div className="flex  pt-4 pb-4">
           {filters.map((filter) => (
