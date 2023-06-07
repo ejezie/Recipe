@@ -32,7 +32,7 @@ const Recipes = ({ ingredients }) => {
 
   const handleNextPage = () => {
     setItemNumber((prev) => prev + 3);
-    dispatch(
+    ingredients.length > 0 && dispatch(
 
         getRecipesAction({
 
@@ -102,7 +102,7 @@ const Recipes = ({ ingredients }) => {
         </div>
       )}
 
-      {recipesAll.length > 0 && !isLoading && (
+      {recipesAll.length > 0 && !isLoading && ingredients.length > 0 && (
         <div className="flex justify-center mt-8">
           <button
             className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-100"
