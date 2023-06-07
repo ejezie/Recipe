@@ -32,6 +32,17 @@ const Recipes = ({ ingredients }) => {
 
   const handleNextPage = () => {
     setItemNumber((prev) => prev + 3);
+    dispatch(
+
+        getRecipesAction({
+
+          recipes: ingredients,
+
+          number: itemNumber,
+
+        })
+
+      );
   };
 
   console.log(ingredients, "ing");
