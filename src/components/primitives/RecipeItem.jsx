@@ -31,7 +31,7 @@ const RecipeItem = ({ id, filters }) => {
         ) : (
           <Link
             to={`details/${id}`}
-            className="bg-white rounded-lg shadow-lg hover:shadow-xl overflow-hidden"
+            className="bg-white rounded-lg shadow-lg overflow-hidden"
             style={{ textDecoration: "none" }}
           >
             <div className="w-full h-56 overflow-hidden">
@@ -43,11 +43,15 @@ const RecipeItem = ({ id, filters }) => {
             </div>
 
             <div className="px-4 py-3">
-              <h1 className="text-gray-900 text-lg font-semibold transition-all duration-300 hover:underline">
+              <h1 className="text-gray-700 text-[16px] md:text-[22px] font-semibold transition-all duration-300 hover:underline pr-2 pl-2">
                 {data?.title}
               </h1>
-              <p className="text-gray-600 text-sm mt-2">{formatText(data?.summary, 150)}</p>
+              <p className="text-gray-400 text-sm mt-2 pr-4 pl-4">
+                {formatText(data?.summary, 150)}
+              </p>
             </div>
+            <div className="text-red-500">{data?.readyInMinutes} mins</div>
+
           </Link>
         )}
       </div>

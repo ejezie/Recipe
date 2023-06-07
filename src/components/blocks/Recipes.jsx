@@ -69,7 +69,7 @@ const Recipes = ({ ingredients }) => {
 
       {recipesAll.length === 0 ? (
         <div className="flex items-center justify-center h-full w-full">
-          <div className="flex items-center flex-col text-sm mt-12">
+          <div className="flex items-center flex-col text-sm mt-12 mb-4">
             <FaSearch size={"40px"} color="#374151" className="mb-2" />{" "}
             <span>No results found</span>
           </div>

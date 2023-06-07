@@ -48,7 +48,7 @@ const RecipeDetails = () => {
     // Load Facebook SDK
     window.fbAsyncInit = function () {
       window.FB.init({
-        appId: "your-facebook-app-id",
+        appId: "facebook-app-id",
         autoLogAppEvents: true,
         xfbml: true,
         version: "v13.0",
@@ -76,6 +76,8 @@ const RecipeDetails = () => {
     })(document);
   }, []);
 
+  console.log(data?.extendedIngredients)
+
   return (
     <div className="bg-white shadow-xl rounded-lg p-6">
       {isLoading ? (
@@ -86,7 +88,7 @@ const RecipeDetails = () => {
         <>
           <div className="overflow-hidden rounded-lg flex flex-grow">
             <img
-              className="w-full h-auto transform transition duration-700 hover:scale-125"
+              className="w-full h-[400px] object-cover transform transition duration-700 hover:scale-125"
               src={data?.image}
               alt={data?.title}
             />
@@ -94,8 +96,23 @@ const RecipeDetails = () => {
           <div className="mt-6">
             <h1 className="text-3xl text-gray-800 font-bold">{data?.title}</h1>
             <p className="text-sm text-gray-500 mt-2">
-              {formatText(data?.summary, 500)}
+              {formatText(data?.summary, 2000)}
             </p>
+          </div>
+          <div className="mt-6">
+            <h1 className="text-3xl text-gray-800 font-bold">INSTRUCTIONS</h1>
+            <p className="text-sm text-gray-500 mt-2">
+              {formatText(data?.instructions, 2000)}
+            </p>
+          </div>
+          <div className="mt-6">
+            <h1 className="text-3xl text-gray-800 font-bold">INGREDIENTS</h1>
+              {data?.extendedIngredients?.map(item => (
+                <ul className="text-sm text-gray-500 mt-2">
+                     <li >* {item?.original} *</li>
+                </ul>
+              ))}
+
           </div>
           <div className="mt-6 flex items-center space-x-4">
             <button
