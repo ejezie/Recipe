@@ -34,13 +34,16 @@ const Recipes = ({ ingredients }) => {
     setItemNumber((prev) => prev + 3);
   };
 
+  console.log(ingredients, "ing");
+
   useEffect(() => {
-    dispatch(
-      getRecipesAction({
-        recipes: ingredients,
-        number: itemNumber,
-      })
-    );
+    !ingredients.length === 0 &&
+      dispatch(
+        getRecipesAction({
+          recipes: ingredients,
+          number: itemNumber,
+        })
+      );
   }, [dispatch, ingredients, itemNumber]);
 
   return (

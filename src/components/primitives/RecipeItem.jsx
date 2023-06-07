@@ -45,7 +45,7 @@ const RecipeItem = ({ id, filters }) => {
           ) : (
             <Link
               to={`details/${id}`}
-              className="bg-white rounded-lg shadow-lg overflow-hidden"
+              className="bg-white rounded-lg  overflow-hidden"
               style={{ textDecoration: "none" }}
             >
               <div className="w-full h-56 overflow-hidden">
