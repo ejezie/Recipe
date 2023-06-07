@@ -24,7 +24,8 @@ const RecipeDetails = () => {
   };
 
   const shareOnTwitter = () => {
-    const recipeUrl = "https://64801342ec11552b599a21a9--gleaming-sable-47502d.netlify.app/"; // Replace with the actual recipe URL
+    const recipeUrl =
+      "https://64801342ec11552b599a21a9--gleaming-sable-47502d.netlify.app/"; // Replace with the actual recipe URL
 
     const twitterIntentUrl = `https://twitter.com/intent/tweet?text=Check out this recipe!&url=${encodeURIComponent(
       recipeUrl
@@ -38,8 +39,8 @@ const RecipeDetails = () => {
     if (window.PinUtils) {
       // Trigger the save action
       window.PinUtils.pinOne({
-        url: "https://64801342ec11552b599a21a9--gleaming-sable-47502d.netlify.app/", 
-        media: data?.image, 
+        url: "https://64801342ec11552b599a21a9--gleaming-sable-47502d.netlify.app/",
+        media: data?.image,
         description: "Check out this recipe!",
       });
     }
@@ -78,43 +79,44 @@ const RecipeDetails = () => {
   }, []);
 
   return (
-    <div className="bg-white shadow-xl rounded-lg p-6">
-        <Link to={"/"}>Go back </Link>
+    <div className="bg-white rounded-lg pt-6 pr-6 pl-6 pb-[100px]">
+      <Link to={"/"} className="text-blue-500 mb-4 inline-block">
+        Go back
+      </Link>
       {isLoading ? (
-        <div className="flex justify-center items-center h-32">
+        <div className="flex justify-center items-center h-50 ">
           <HashLoader color="#374151" />
         </div>
       ) : (
         <>
           <div className="overflow-hidden rounded-lg flex flex-grow">
             <img
-              className="w-full h-[400px] object-cover transform transition duration-700 hover:scale-125"
+              className="w-full md:h-[400px] h-[200px] object-cover transform transition duration-700 hover:scale-125"
               src={data?.image || greybg}
               alt={data?.title}
             />
           </div>
           <div className="mt-6">
-            <h1 className="text-3xl text-gray-800 font-bold">{data?.title}</h1>
+            <h1 className="md:text-3xl text-xl text-gray-800 font-bold">{data?.title}</h1>
             <div className="text-sm text-gray-500 mt-2">
               {formatText(data?.summary, 2000)}
             </div>
           </div>
           <div className="mt-6">
-            <h1 className="text-3xl text-gray-800 font-bold">INSTRUCTIONS</h1>
+            <h1 className="md:text-3xl text-xl text-gray-800 font-bold">INSTRUCTIONS</h1>
             <p className="text-sm text-gray-500 mt-2">
               {formatText(data?.instructions, 2000)}
             </p>
           </div>
           <div className="mt-6">
-            <h1 className="text-3xl text-gray-800 font-bold">INGREDIENTS</h1>
-              {data?.extendedIngredients?.map(item => (
-                <ul className="text-sm text-gray-500 mt-2">
-                     <li > {item?.original} </li>
-                </ul>
+            <h1 className="md:text-3xl text-xl text-gray-800 font-bold">INGREDIENTS</h1>
+            <ul className="list-disc list-inside text-sm text-gray-500 mt-2">
+              {data?.extendedIngredients?.map((item) => (
+                <li key={item?.id}>{item?.original}</li>
               ))}
-
+            </ul>
           </div>
-          <div className="mt-6 flex items-center justify-center w-full flex-wrap space-x-4">
+          <div className="mt-8 flex items-center justify-center w-full flex-wrap space-x-4">
             <button
               className="flex items-center justify-center p-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition duration-300 mb-2"
               onClick={shareOnFacebook}
