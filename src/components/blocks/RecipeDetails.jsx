@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import formatText from "utils/formatText";
 import { HashLoader } from "react-spinners";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FaFacebook, FaTwitter, FaPinterest } from "react-icons/fa";
 
 const RecipeDetails = () => {
@@ -17,13 +17,13 @@ const RecipeDetails = () => {
       // Open the Share Dialog
       window.FB.ui({
         method: "share",
-        href: "https://example.com/recipe-url", // Replace with the actual recipe URL
+        href: "https://64801342ec11552b599a21a9--gleaming-sable-47502d.netlify.app/", // Replace with the actual recipe URL
       });
     }
   };
 
   const shareOnTwitter = () => {
-    const recipeUrl = "https://example.com/recipe-url"; // Replace with the actual recipe URL
+    const recipeUrl = "https://64801342ec11552b599a21a9--gleaming-sable-47502d.netlify.app/"; // Replace with the actual recipe URL
 
     const twitterIntentUrl = `https://twitter.com/intent/tweet?text=Check out this recipe!&url=${encodeURIComponent(
       recipeUrl
@@ -37,9 +37,9 @@ const RecipeDetails = () => {
     if (window.PinUtils) {
       // Trigger the save action
       window.PinUtils.pinOne({
-        url: "https://example.com/recipe-url", // Replace with the actual recipe URL
-        media: "https://example.com/recipe-image.jpg", // Replace with the actual recipe image URL
-        description: "Check out this recipe!", // Replace with the recipe description
+        url: "https://64801342ec11552b599a21a9--gleaming-sable-47502d.netlify.app/", 
+        media: data?.image, 
+        description: "Check out this recipe!",
       });
     }
   };
@@ -76,10 +76,9 @@ const RecipeDetails = () => {
     })(document);
   }, []);
 
-  console.log(data?.extendedIngredients)
-
   return (
     <div className="bg-white shadow-xl rounded-lg p-6">
+        <Link to={"/"}>Go back </Link>
       {isLoading ? (
         <div className="flex justify-center items-center h-32">
           <HashLoader color="#374151" />
@@ -95,9 +94,9 @@ const RecipeDetails = () => {
           </div>
           <div className="mt-6">
             <h1 className="text-3xl text-gray-800 font-bold">{data?.title}</h1>
-            <p className="text-sm text-gray-500 mt-2">
+            <div className="text-sm text-gray-500 mt-2">
               {formatText(data?.summary, 2000)}
-            </p>
+            </div>
           </div>
           <div className="mt-6">
             <h1 className="text-3xl text-gray-800 font-bold">INSTRUCTIONS</h1>
@@ -109,28 +108,28 @@ const RecipeDetails = () => {
             <h1 className="text-3xl text-gray-800 font-bold">INGREDIENTS</h1>
               {data?.extendedIngredients?.map(item => (
                 <ul className="text-sm text-gray-500 mt-2">
-                     <li >* {item?.original} *</li>
+                     <li > {item?.original} </li>
                 </ul>
               ))}
 
           </div>
-          <div className="mt-6 flex items-center space-x-4">
+          <div className="mt-6 flex items-center justify-center w-full flex-wrap space-x-4">
             <button
-              className="flex items-center justify-center p-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition duration-300"
+              className="flex items-center justify-center p-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition duration-300 mb-2"
               onClick={shareOnFacebook}
             >
               <FaFacebook className="text-lg mr-2" />
               Share on Facebook
             </button>
             <button
-              className="flex items-center justify-center p-2 rounded-full bg-blue-400 text-white hover:bg-blue-500 transition duration-300"
+              className="flex items-center justify-center p-2 rounded-full bg-blue-400 text-white hover:bg-blue-500 transition duration-300 mb-2"
               onClick={shareOnTwitter}
             >
               <FaTwitter className="text-lg mr-2" />
               Share on Twitter
             </button>
             <button
-              className="flex items-center justify-center p-2 rounded-full bg-red-500 text-white hover:bg-red-600 transition duration-300"
+              className="flex items-center justify-center p-2 rounded-full bg-red-500 text-white hover:bg-red-600 transition duration-300 mb-2"
               onClick={shareOnPinterest}
             >
               <FaPinterest className="text-lg mr-2" />

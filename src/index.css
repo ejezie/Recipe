@@ -11,6 +11,7 @@
 body {
   scroll-behavior: smooth;
   font-family: "Poppins", sans-serif;
+  position: relative;
 }
 
 .header-banner {
@@ -46,3 +47,20 @@ body {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 } */
+@keyframes fade-in-slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+}
+
+.animate-fade-slide {
+  animation: fade-in-slide-up 5s ease-in-out;
+  animation-delay: 5s;
+  animation-fill-mode: both;
+}

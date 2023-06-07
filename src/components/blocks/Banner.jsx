@@ -44,16 +44,16 @@ const Banner = ({ setIngredients }) => {
 
           <button
             onClick={handleClick}
-            className="text-sm bg-primary py-3 px-6 rounded-full text-gray-700 poppins ring-red-300 focus:ring-4 transition duration-300 hover:scale-102 transform"
+            className="text-sm bg-primary py-3 px-6 rounded-full text-gray-700 poppins ring-red-300 focus:ring-4 transition duration-300 hover:scale-102 transform hover:bg-red-100"
           >
             Search
           </button>
         </div>
         <button
           onClick={handleClickRandom}
-          className="text-sm text-black bg-primary py-3 px-6 rounded-full text-white poppins ring-red-300 focus:ring-4 transition duration-300 hover:scale-105 transform"
+          className="text-sm text-gray-700 bg-[rgba(0, 0, 0, 0.2)] py-3 px-6 rounded-full text-white poppins ring-red-300 focus:ring-4 transition duration-300 hover:scale-105 transform hover:bg-red-100"
         >
-          Random Recipe
+          Random Recipes
         </button>
       </div>
     </section>

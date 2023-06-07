@@ -6,7 +6,6 @@ const Details = () => {
   return (
     <>
       <RecipeDetails />
-      <Footer />
     </>
   );
 };
