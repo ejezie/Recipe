@@ -5,7 +5,7 @@ import { formatErrorResponse } from "utils/formatErrorResponse";
 
 export const getRecipesAction = createAsyncThunk(
   "recipes/all",
-  async ({recipes, number=9}, thunkAPI) => {
+  async ({recipes, number=3}, thunkAPI) => {
     try {
       const response = await getAllRecipes(recipes, number);
       return response.data;
@@ -20,7 +20,7 @@ export const getRecipesAction = createAsyncThunk(
 
 export const getRandomRecipesAction = createAsyncThunk(
   "recipes/random",
-  async (number=9, thunkAPI) => {
+  async (number=3, thunkAPI) => {
     try {
       const response = await getRandomRecipes(number);
       return response.data.recipes;
@@ -36,7 +36,6 @@ export const getRandomRecipesAction = createAsyncThunk(
 export const getRecipeInfoAction = createAsyncThunk(
   "recipes/info",
   async (id, thunkAPI) => {
-    console.log(id, "id");
     try {
       const response = await getRecipesInfo(id);
       return response.data;

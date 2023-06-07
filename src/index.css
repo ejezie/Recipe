@@ -4,11 +4,11 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
   scroll-behavior: smooth;
   font-family: "Poppins", sans-serif;
 }
@@ -31,7 +31,6 @@ body {
 /* RecipeCard.css */
 .recipe-card-shimmer {
   animation: shimmer 0.1s infinite linear;
-
 }
 
 @keyframes shimmer {
